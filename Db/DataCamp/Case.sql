@@ -43,3 +43,5 @@ USING (code)
 FULL JOIN currencies AS c2
 USING (code)
 WHERE region LIKE 'M%esia';
+
+--
