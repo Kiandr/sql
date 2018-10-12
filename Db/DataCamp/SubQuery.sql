@@ -57,3 +57,55 @@ from countries, (select code, count(*) as lang_num from languages group by code)
 where foo.code = countries.code
 order by lang_num  desc
 
+-- Excersice 1
+select c1.name as name, c1.continent as continent, c2.inflation_rate as inflation_rate
+from countries as c1
+inner join economies as c2
+using (code)
+where c2.year = 2015
+
+-- Excersice 1 completed
+select max (inflation_rate)  as max_inf
+from (select  c1.continent as continent, c2.inflation_rate as inflation_rate
+from countries as c1
+inner join economies as c2
+using (code)
+where c2.year = 2015 
+) as subquery
+group by subquery.continent
+
+
+select max (inflation_rate)  as max_inf
+from (
+    select name, continent , inflation_rate
+    from countries 
+    INNER JOIN economies 
+    using (code)
+    where year = 2015 
+    ) as subquery
+group by continent
+
+
+SELECT MAX(inflation_rate) AS max_inf
+  FROM (
+      SELECT name, continent, inflation_rate
+      FROM countries
+      INNER JOIN economies
+      USING (code)
+      WHERE year = 2015) AS subquery
+GROUP BY continent;
+-- Advance Query 
+SELECT name, continent, inflation_rate
+FROM countries
+INNER JOIN economies
+ON countries.code = economies.code
+WHERE year = 2015
+    AND inflation_rate IN (
+        SELECT MAX(inflation_rate) AS max_inf
+        FROM (
+             SELECT name, continent, inflation_rate
+             FROM countries
+             INNER JOIN economies
+             ON countries.code = economies.code
+             WHERE year = 2015) AS subquery
+        GROUP BY continent);
