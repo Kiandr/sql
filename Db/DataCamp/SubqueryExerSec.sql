@@ -49,3 +49,16 @@ ON (c.code = e.code  AND name IN (
 select l.name from languages as l where l.official = 'true' ))
 WHERE e.year = '2015' AND c.region = 'Central America'
 ORDER BY c.name;
+
+/*==Final Solution*/
+SELECT DISTINCT name, total_investment, imports
+FROM countries AS c
+LEFT JOIN economies AS e
+ON (c.code = e.code
+  AND c.code IN (
+    SELECT l.code
+    FROM languages AS l
+    WHERE official = 'true'
+  ) )
+WHERE region = 'Central America' AND year = 2015
+ORDER BY name;
