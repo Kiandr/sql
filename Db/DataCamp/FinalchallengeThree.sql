@@ -7,6 +7,7 @@
 -- Order the result by city_perc descending.
 -- Then determine the top 10 capital cities in Europe and the Americas in terms of this city_perc percentage.
 -- After this exercise you are done with the course! If you enjoyed the material, feel free to send Chester a thank you via Twitter. He'll appreciate it. Tweet to Chester
+/*
 SELECT ___, ___, ___, ___,
       ___ / ___ * ___ AS ___
 FROM ___
@@ -18,7 +19,7 @@ WHERE ___ IN
      AND ___ IS ___ ___
 ORDER BY ___ ___
 ___ ___;
-
+*/
 SELECT name, country_code, city_proper_pop, metroarea_pop,
       city_proper_pop / metroarea_pop * 100 AS city_perc
 FROM cities
