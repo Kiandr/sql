@@ -1,7 +1,7 @@
 # Root user definition 
 rootPass='postgres';
 rootUser='postgres';
-server='localhost'
+server='localhost';
 database='interview'
 
 PGPASSWORD=$rootPass psql -h $server -U $rootUser -c "
